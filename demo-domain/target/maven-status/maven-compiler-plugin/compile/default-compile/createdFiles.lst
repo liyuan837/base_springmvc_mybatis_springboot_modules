@@ -1,1 +1,4 @@
-com\liyuan\demo\domain\po\HeroPo.class
+com\liyuan\demo\domain\condition\hero\HeroCondition.class
+com\liyuan\demo\domain\condition\BaseCondition.class
+com\liyuan\demo\domain\po\hero\HeroPo.class
+com\liyuan\demo\domain\exception\DemoException.class

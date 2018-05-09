@@ -1,1 +1,2 @@
-com\liyuan\demo\mapper\TestMapper.class
+com\liyuan\demo\mapper\HeroMapper.class
+com\liyuan\demo\mapper\base\BaseMapper.class
