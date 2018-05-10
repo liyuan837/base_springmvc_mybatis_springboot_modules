@@ -5,12 +5,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Data
 @ApiModel
-public class HeroQueryForm extends BaseQueryForm {
+public class HeroQueryForm extends BaseQueryForm{
 
 	@ApiModelProperty(value = "ID")
 	private Integer id;
@@ -27,4 +26,9 @@ public class HeroQueryForm extends BaseQueryForm {
 	@ApiModelProperty(value = "skill")
 	private String skill;
 
+	@ApiModelProperty("分页每页条数")
+	public Integer pageSize;
+
+	@ApiModelProperty("分页页码")
+	public Integer pageNum;
 }

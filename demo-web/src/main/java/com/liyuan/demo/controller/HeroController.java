@@ -8,6 +8,7 @@ import com.liyuan.demo.form.hero.HeroCreateForm;
 import com.liyuan.demo.form.hero.HeroDeleteForm;
 import com.liyuan.demo.form.hero.HeroQueryForm;
 import com.liyuan.demo.form.hero.HeroUpdateForm;
+import com.liyuan.demo.response.PageListResponse;
 import com.liyuan.demo.response.ResponseEntity;
 import com.liyuan.demo.service.HeroService;
 import com.liyuan.demo.utils.CopyUtil;
@@ -19,10 +20,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/Hero")
-@Api(value = "/Hero", description = "")
+@Api(value = "/Hero", description = "英雄类")
 public class HeroController extends BaseController {
 
 	@Autowired
@@ -44,27 +47,27 @@ public class HeroController extends BaseController {
 		return getSuccessResult(count);
 	}
 
-//	@ApiOperation(value = "查询列表",notes = "查询列表",httpMethod = "POST")
-//	@PostMapping(value = "/queryList")
-//	public ResponseEntity<CentreListResponse<HeroVo>> queryList(@RequestBody @Valid HeroQueryForm form) throws DemoException {
-//		HeroCondition condition = this.getConditionByQueryForm(form);
-//		List<HeroPo> poList = heroService.queryList(condition);
-//		List<HeroVo> voList = CopyUtil.transfer(poList, HeroVo.class);
-//		return getSuccessResult(getListResponse(voList));
-//	}
-//
-//	@ApiOperation(value = "查询列表(带分页)",notes = "查询列表(带分页)",httpMethod = "POST")
-//	@PostMapping(value = "/queryPageList")
-//	public ResponseEntity<CentreCutPageResponse<HeroVo>> queryPageList(@RequestBody @Valid HeroQueryForm form) throws DemoException {
-//		HeroCondition condition = this.getConditionByQueryForm(form);
-//		List<HeroVo> voList = new ArrayList<>();
-//		int count = heroService.queryCount(condition);
-//		if (count > 0) {
-//			List<HeroPo> poList = heroService.queryList(condition);
-//			voList = CopyUtil.transfer(poList, HeroVo.class);
-//		}
-//		return getSuccessResult(getPageResponse(form, count, voList));
-//	}
+	@ApiOperation(value = "查询列表",notes = "查询列表",httpMethod = "POST")
+	@PostMapping(value = "/queryList")
+	public ResponseEntity<PageListResponse<HeroVo>> queryList(@RequestBody @Valid HeroQueryForm form) throws DemoException {
+		HeroCondition condition = this.getConditionByQueryForm(form);
+		List<HeroPo> poList = heroService.queryList(condition);
+		List<HeroVo> voList = CopyUtil.transfer(poList, HeroVo.class);
+		return getSuccessResult(voList);
+	}
+
+	@ApiOperation(value = "查询列表(带分页)",notes = "查询列表(带分页)",httpMethod = "POST")
+	@PostMapping(value = "/queryPageList")
+	public ResponseEntity<PageListResponse<HeroVo>> queryPageList(@RequestBody @Valid HeroQueryForm form) throws DemoException {
+		HeroCondition condition = this.getConditionByQueryForm(form);
+		List<HeroVo> voList = new ArrayList<>();
+		int count = heroService.queryCount(condition);
+		if (count > 0) {
+			List<HeroPo> poList = heroService.queryList(condition);
+			voList = CopyUtil.transfer(poList, HeroVo.class);
+		}
+		return getSuccessResult(voList);
+	}
 
 	@ApiOperation(value = "新增",notes = "新增",httpMethod = "POST")
 	@PostMapping(value = "/add")

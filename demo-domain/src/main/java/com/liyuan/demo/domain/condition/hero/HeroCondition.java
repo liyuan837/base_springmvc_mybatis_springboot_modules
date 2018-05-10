@@ -13,7 +13,7 @@ import java.util.List;
  * @Modified By:
  */
 @Data
-public class HeroCondition  extends BaseCondition {
+public class HeroCondition extends BaseCondition{
     /**
      * ID
      */
