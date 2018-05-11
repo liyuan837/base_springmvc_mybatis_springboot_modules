@@ -1,5 +1,6 @@
 package com.liyuan.demo.controller.base;
 
+import com.liyuan.demo.response.PageListResponse;
 import com.liyuan.demo.response.ResponseEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Collections;
+import java.util.List;
 
 /**
  * @Author:LiYuan
@@ -95,6 +97,11 @@ public class BaseController {
     ResponseEntity runtimeExceptionHandler(RuntimeException e) {
         logger.error("发生系统异常", e);
         return this.getFailResult("系统异常，请和管理员联系！");
+    }
+
+    public <T> PageListResponse<T> getPageListResponse(Integer pageNum, Integer pageSize, Integer totalCount,List<T> dataList){
+        PageListResponse<T> pageListResponse = new PageListResponse<T>(pageNum,pageSize,totalCount,dataList);
+        return pageListResponse;
     }
 
 }

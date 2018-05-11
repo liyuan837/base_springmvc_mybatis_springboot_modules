@@ -7,7 +7,6 @@ import java.util.List;
 
 public abstract class BaseCondition{
 
-    /* 请求地址 */
     private int pageSize = 0;
     private int pageNum;
     private int skipResults = 0;
@@ -55,9 +54,9 @@ public abstract class BaseCondition{
         this.sortList = sortList;
     }
 
-//    @Override
-//    public String toString() {
-//        return ToStringBuilder.reflectionToString(this);
-//    }
+    @Override
+    public String toString() {
+        return this.pageNum + "==" + this.pageSize;
+    }
 
 }

@@ -44,14 +44,6 @@
 		</if>
 	</sql>
 
-	<sql id="pageSql">
-		limit #{pageNum}*#{pageSize},#{pageSize}
-	</sql>
-
-	<sql id="orderBySql">
-		order by #{orderBy}
-	</sql>
-
 	<select id="select" parameterType="Integer" resultMap="HeroPo">
 		SELECT 
 		<include refid="fieldSql"/>
@@ -75,15 +67,6 @@
 		<where>
 			<include refid="whereSql"/>
 		</where>
-
-		<if test="pageSize!=null and pageNum != null">
-			<include refid="pageSql"/>
-		</if>
-
-		<if test="orderBy!=null">
-			<include refid="orderBySql"/>
-		</if>
-
 	</select>
 
 	<insert id="insert" parameterType="com.liyuan.demo.domain.po.hero.HeroPo">

@@ -31,14 +31,14 @@ public abstract class BaseServiceImpl<T, C extends BaseCondition, M extends Base
 
     @Override
     public List<T> queryList(C condition) {
-        PageHelperUtil.startPage(condition.getPageNum(), condition.getPageSize());
+        PageHelperUtil.startPage(condition.getPageNum(), condition.getPageSize(),condition.getOrderBy());
         List<T> list = mapper.selectList(condition);
         return list;
     }
 
     @Override
     public int queryCount(C condition) {
-        PageHelperUtil.startPage(0, 0);
+        PageHelperUtil.startPage(0, 0,null);
         return mapper.count(condition);
     }
 

@@ -1,12 +1,13 @@
 package com.liyuan.demo.mapper.base;
 
 
+import com.liyuan.demo.domain.condition.BaseCondition;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface BaseMapper<T, C> {
+public interface BaseMapper<T, C extends BaseCondition> {
     /**
      * 获得bean
      *
