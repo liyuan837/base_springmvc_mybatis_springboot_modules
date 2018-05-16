@@ -1,5 +1,6 @@
 package com.liyuan.demo.controller.base;
 
+import com.liyuan.demo.domain.exception.DemoException;
 import com.liyuan.demo.response.PageListResponse;
 import com.liyuan.demo.response.ResponseEntity;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author:LiYuan
@@ -83,6 +85,20 @@ public class BaseController {
      */
     protected ResponseEntity getFailResult(int errCode, String msg) {
         return new ResponseEntity("fail", errCode, msg, Collections.EMPTY_MAP);
+    }
+
+
+    /**
+     * 业务异常控制
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(DemoException.class)
+    @ResponseBody
+    public ResponseEntity ExceptionHandler(DemoException e) {
+        logger.warn(e.getLocalizedMessage());
+        return this.getFailResult(e.getErrCode(), e.getMessage());
     }
 
     /**
