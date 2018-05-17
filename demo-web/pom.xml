@@ -77,6 +77,18 @@
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 
+		<!-- json解析依赖 -->
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<classifier>jdk15</classifier>
+		</dependency>
+
+		<!--jwt-->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
